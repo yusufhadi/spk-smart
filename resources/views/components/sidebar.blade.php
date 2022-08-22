@@ -12,8 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -28,9 +28,14 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ route('criteria') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <span>Kriteria</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('criteria') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Sub Kriteria</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [homeController::class, 'index'])->name('dashboard');
+Route::get('/criteria', [criteriaController::class, 'index'])->name('criteria');
+Route::POST('/criteria', [criteriaController::class, 'store'])->name('tambah-criteria');
+Route::put('/criteria/{id}', [criteriaController::class, 'update'])->name('update-criteria');
+Route::get('/criteria/delete/{id}', [criteriaController::class, 'destroy'])->name('delete-criteria');
+// Route::POST('/add-criteria', [criteriaController::class, 'store'])->name('tambah-criteria');
+
+// Route::resource('/criteria', 'criteriaController');
