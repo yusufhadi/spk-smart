@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Criteria;
+use App\Models\SubCriteria;
 use Illuminate\Http\Request;
 
 class SubCriteriaController extends Controller
@@ -15,7 +16,10 @@ class SubCriteriaController extends Controller
     public function index()
     {
         $criteria = Criteria::all();
-        return view('dashboard.SubCriteria.index', compact('criteria'));
+        $subCriteria = SubCriteria::all();
+
+        // dd($subCriteria);
+        return view('dashboard.SubCriteria.index', compact('criteria', 'subCriteria'));
     }
 
     /**
@@ -36,7 +40,22 @@ class SubCriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_kriteria' => 'required',
+            'sub_kriteria' => 'required',
+            'bobot' => 'required'
+        ]);
+
+        $subCriteria = SubCriteria::create([
+            'id_kriteria' => $request->id_kriteria,
+            'sub_kriteria' => $request->sub_kriteria,
+            'bobot' => $request->bobot
+        ]);
+
+        // dd($subCriteria);
+
+        return redirect('sub-criteria');
+        // return view('dashboard.SubCriteria.index', compact('subCriteria'));
     }
 
     /**
@@ -70,7 +89,21 @@ class SubCriteriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_kriteria' => 'required',
+            'sub_kriteria' => 'required',
+            'bobot' => 'required'
+        ]);
+
+        $subCriteria = SubCriteria::findOrFail($id);
+
+        $subCriteria->update([
+            'id_kriteria' => $request->id_kriteria,
+            'sub_kriteria' => $request->sub_kriteria,
+            'bobot' => $request->bobot
+        ]);
+
+        return redirect('sub-criteria');
     }
 
     /**
@@ -81,6 +114,10 @@ class SubCriteriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subCriteria = SubCriteria::findOrFail($id);
+
+        $data = $subCriteria->delete();
+
+        return redirect('sub-criteria');
     }
 }

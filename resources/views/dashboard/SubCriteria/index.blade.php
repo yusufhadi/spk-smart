@@ -4,15 +4,15 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Sub Kriteria</h1>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubKriteria">
+            Tambah Data
+        </button>
     </div>
 
     @foreach ($criteria as $item)
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="font-weight-bold text-primary">{{ $item->kriteria }} ({{ $item->kode_kriteria }})</h6>
-                <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addKriteria">
-                    Tambah Data
-                </button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -26,25 +26,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($criteria as $c)  
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $c->kriteria }}</td>
-                                    <td>{{ $c->bobot }}</td>
-                                    <td>
-                                        <a href="" class="btn btn-warning btn-sm mr-1" data-bs-toggle="modal"
-                                            data-bs-target="#updateKriteria-{{ $c->id }}"> <i class="fas fa-pen"></i>
-                                        </a>
-                                        <a href="{{ route('delete-criteria', $c->id) }}" class="btn btn-danger btn-sm mr-1">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                            @forelse ($subCriteria as $c)
+                                @if ($item->id == $c->id_kriteria)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $c->sub_kriteria }}</td>
+                                        <td>{{ $c->bobot }}</td>
+                                        <td>
+                                            <a href="" class="btn btn-warning btn-sm mr-1" data-bs-toggle="modal"
+                                                data-bs-target="#updateSubKriteria-{{ $c->id }}"> <i
+                                                    class="fas fa-pen"></i>
+                                            </a>
+                                            <a href="{{ route('delete-sub-criteria', $c->id) }}"
+                                                class="btn btn-danger btn-sm mr-1">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endif
                             @empty
                                 <tr>
                                     <td colspan="4">Data Kosong</td>
                                 </tr>
-                            @endforelse --}}
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -52,32 +56,29 @@
         </div>
     @endforeach
 
-    <!-- Modal Tambah Kriteria -->
-    {{-- <div class="modal fade" id="addKriteria" tabindex="-1" aria-labelledby="addKriteriaModal" aria-hidden="true">
+    <!-- Modal Tambah Sub Kriteria -->
+    <div class="modal fade" id="addSubKriteria" tabindex="-1" aria-labelledby="addSubKriteriaModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addKriteriaModal">Tambah Kriteria</h5>
+                    <h5 class="modal-title" id="addSubKriteriaModal">Tambah Sub Kriteria</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('tambah-criteria') }}" method="POST">
+                <form action="{{ route('tambah-sub-criteria') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="kode_kriteria" class="form-label">Kode Kriteria</label>
-                            <input type="text" class="form-control" name="kode_kriteria">
-                        </div>
-                        <div class="mb-3">
-                            <label for="kriteria" class="form-label">Kriteria</label>
-                            <input type="text" class="form-control" name="kriteria">
-                        </div>
-                        <div class="mb-3">
-                            <label for="jenis" class="form-label">Jenis Kriteria</label>
-                            <select name="jenis" class="form-select" aria-label="Default select example">
+                            <label for="id_kriteria" class="form-label">Pilih Kriteria</label>
+                            <select name="id_kriteria" class="form-select" aria-label="Default select example">
                                 <option selected>Pilih</option>
-                                <option value="Cost">Cost</option>
-                                <option value="Benefit">Benefit</option>
+                                @foreach ($criteria as $item)
+                                    <option value="{{ $item->id }}">{{ $item->kriteria }}</option>
+                                @endforeach
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sub_kriteria" class="form-label">Nama Sub Kriteria</label>
+                            <input type="text" class="form-control" name="sub_kriteria">
                         </div>
                         <div class="mb-3">
                             <label for="bobot" class="form-label">Bobot</label>
@@ -91,40 +92,32 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
-    <!-- Modal Update Kriteria -->
-    {{-- @foreach ($criteria as $item)
-        <div class="modal fade" id="updateKriteria-{{ $item->id }}" tabindex="-1" aria-labelledby="UpdateKriteriaModal"
-            aria-hidden="true">
+    <!-- Modal Update Sub Kriteria -->
+    @foreach ($subCriteria as $item)
+        <div class="modal fade" id="updateSubKriteria-{{ $item->id }}" tabindex="-1"
+            aria-labelledby="UpdateSubKriteriaModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="UpdateKriteriaModal">Update Kriteria</h5>
+                        <h5 class="modal-title" id="UpdateSubKriteriaModal">Update Kriteria</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('update-criteria', $item->id) }}" method="POST">
+                    <form action="{{ route('update-sub-criteria', $item->id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="kode_kriteria" class="form-label">Kode Kriteria</label>
-                                <input type="text" value="{{ $item->kode_kriteria }}" class="form-control"
-                                    name="kode_kriteria">
+                                <label for="id_kriteria" class="form-label">Kriteria</label>
+                                <input type="text" value="{{ $item->id_kriteria }}" class="form-control"
+                                    name="id_kriteria" readonly>
                             </div>
                             <div class="mb-3">
-                                <label for="kriteria" class="form-label">Kriteria</label>
-                                <input type="text" value="{{ $item->kriteria }}" class="form-control" name="kriteria">
-                            </div>
-                            <div class="mb-3">
-                                <label for="jenis" class="form-label">Jenis Kriteria</label>
-                                <select name="jenis" value="{{ $item->jenis }}" class="form-select"
-                                    aria-label="Default select example">
-                                    <option selected>{{ $item->jenis }}</option>
-                                    <option value="Cost">Cost</option>
-                                    <option value="Benefit">Benefit</option>
-                                </select>
+                                <label for="sub_kriteria" class="form-label">Sub Kriteria</label>
+                                <input type="text" value="{{ $item->sub_kriteria }}" class="form-control"
+                                    name="sub_kriteria">
                             </div>
                             <div class="mb-3">
                                 <label for="bobot" class="form-label">Bobot</label>
@@ -139,5 +132,5 @@
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 @endsection
