@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\SubCriteriaController;
@@ -27,3 +28,8 @@ Route::get('/sub-criteria', [SubCriteriaController::class, 'index'])->name('subc
 Route::POST('/sub-criteria', [SubCriteriaController::class, 'store'])->name('tambah-sub-criteria');
 Route::put('/sub-criteria/{id}', [SubCriteriaController::class, 'update'])->name('update-sub-criteria');
 Route::get('/sub-criteria/delete/{id}', [SubCriteriaController::class, 'destroy'])->name('delete-sub-criteria');
+
+Route::get('/alternatif', [AlternatifController::class, 'index'])->name('alternatif');
+Route::post('/alternatif', [AlternatifController::class, 'store'])->name('tambah-alternatif');
+Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('update-alternatif');
+Route::get('/alternatif/delete/{id}', [AlternatifController::class, 'destroy'])->name('delete-alternatif');
