@@ -30,17 +30,22 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('criteria') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Kriteria</span></a>
+            <span>Data Kriteria</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('subcriteria') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Sub Kriteria</span></a>
+            <span>Data Sub Kriteria</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('alternatif') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Alternatif</span></a>
+            <span>Data Alternatif</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('penilaian') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data Penilaian</span></a>
     </li>
 
     <!-- Divider -->

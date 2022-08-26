@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\criteriaController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\SubCriteriaController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,5 @@ Route::get('/alternatif', [AlternatifController::class, 'index'])->name('alterna
 Route::post('/alternatif', [AlternatifController::class, 'store'])->name('tambah-alternatif');
 Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('update-alternatif');
 Route::get('/alternatif/delete/{id}', [AlternatifController::class, 'destroy'])->name('delete-alternatif');
+
+Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian');
