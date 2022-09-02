@@ -12,7 +12,7 @@ class SubCriteria extends Model
     protected $fillable = [
         'id_kriteria',
         'sub_kriteria',
-        'bobot'
+        'bobot_sub'
     ];
 
     public function kriteria()

@@ -13,7 +13,7 @@ class Criteria extends Model
         'kode_kriteria',
         'kriteria',
         'jenis',
-        'bobot'
+        'bobot_criteria'
     ];
 
     public function sub_kriteria()

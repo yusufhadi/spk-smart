@@ -18,7 +18,7 @@ class CreateSubCriteriasTable extends Migration
             $table->bigInteger('id_kriteria')->unsigned();
             $table->foreign('id_kriteria')->references('id')->on('criterias');
             $table->string('sub_kriteria');
-            $table->integer('bobot');
+            $table->integer('bobot_sub');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\alternatif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PenilaianController extends Controller
 {
@@ -15,6 +16,12 @@ class PenilaianController extends Controller
     public function index()
     {
         $alternatif = alternatif::all();
+
+        $data = DB::table('criterias')
+            ->join('sub_criterias', 'sub_criterias.id_kriteria', '=', 'criterias.id')
+            ->get();
+
+        // dd($data);
 
         return view('dashboard.Penilaian.index', compact('alternatif'));
     }

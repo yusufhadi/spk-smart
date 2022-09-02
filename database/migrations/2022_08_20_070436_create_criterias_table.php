@@ -18,7 +18,7 @@ class CreateCriteriasTable extends Migration
             $table->string('kode_kriteria');
             $table->string('kriteria');
             $table->string('jenis');
-            $table->integer('bobot');
+            $table->integer('bobot_criteria');
             $table->timestamps();
         });
     }

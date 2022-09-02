@@ -31,7 +31,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $c->sub_kriteria }}</td>
-                                        <td>{{ $c->bobot }}</td>
+                                        <td>{{ $c->bobot_sub }}</td>
                                         <td>
                                             <a href="" class="btn btn-warning btn-sm mr-1" data-bs-toggle="modal"
                                                 data-bs-target="#updateSubKriteria-{{ $c->id }}"> <i
@@ -81,8 +81,8 @@
                             <input type="text" class="form-control" name="sub_kriteria">
                         </div>
                         <div class="mb-3">
-                            <label for="bobot" class="form-label">Bobot</label>
-                            <input type="number" class="form-control" name="bobot">
+                            <label for="bobot_sub" class="form-label">Bobot</label>
+                            <input type="number" class="form-control" name="bobot_sub">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,8 +120,9 @@
                                     name="sub_kriteria">
                             </div>
                             <div class="mb-3">
-                                <label for="bobot" class="form-label">Bobot</label>
-                                <input type="number" value="{{ $item->bobot }}" class="form-control" name="bobot">
+                                <label for="bobot_sub" class="form-label">Bobot</label>
+                                <input type="number" value="{{ $item->bobot_sub }}" class="form-control"
+                                    name="bobot_sub">
                             </div>
                         </div>
                         <div class="modal-footer">

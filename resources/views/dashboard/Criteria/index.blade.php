@@ -33,7 +33,7 @@
                                 <td>{{ $c->kode_kriteria }}</td>
                                 <td>{{ $c->kriteria }}</td>
                                 <td>{{ $c->jenis }}</td>
-                                <td>{{ $c->bobot }}</td>
+                                <td>{{ $c->bobot_criteria }}</td>
                                 <td>
                                     <a href="" class="btn btn-warning btn-sm mr-1" data-bs-toggle="modal"
                                         data-bs-target="#updateKriteria-{{ $c->id }}"> <i class="fas fa-pen"></i>
@@ -82,8 +82,8 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="bobot" class="form-label">Bobot</label>
-                            <input type="number" class="form-control" name="bobot">
+                            <label for="bobot_criteria" class="form-label">Bobot</label>
+                            <input type="number" class="form-control" name="bobot_criteria">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -130,8 +130,9 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="bobot" class="form-label">Bobot</label>
-                                <input type="number" value="{{ $item->bobot }}" class="form-control" name="bobot">
+                                <label for="bobot_criteria" class="form-label">Bobot</label>
+                                <input type="number" value="{{ $item->bobot_criteria }}" class="form-control"
+                                    name="bobot_criteria">
                             </div>
                         </div>
                         <div class="modal-footer">

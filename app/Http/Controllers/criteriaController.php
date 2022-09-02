@@ -40,14 +40,14 @@ class criteriaController extends Controller
             'kode_kriteria' => 'required',
             'kriteria' => 'required',
             'jenis' => 'required',
-            'bobot' => 'required'
+            'bobot_criteria' => 'required'
         ]);
 
         $criteria = Criteria::create([
             'kode_kriteria' => $request->kode_kriteria,
             'kriteria' => $request->kriteria,
             'jenis' => $request->jenis,
-            'bobot' => $request->bobot,
+            'bobot_criteria' => $request->bobot_criteria,
         ]);
 
         return redirect('criteria');
@@ -89,7 +89,7 @@ class criteriaController extends Controller
             'kode_kriteria' => 'required',
             'kriteria' => 'required',
             'jenis' => 'required',
-            'bobot' => 'required'
+            'bobot_criteria' => 'required'
         ]);
 
         $criteria = Criteria::findOrFail($id);
@@ -98,7 +98,7 @@ class criteriaController extends Controller
             'kode_kriteria' => $request->kode_kriteria,
             'kriteria' => $request->kriteria,
             'jenis' => $request->jenis,
-            'bobot' => $request->bobot,
+            'bobot_criteria' => $request->bobot_criteria,
         ]);
 
         return redirect('criteria');

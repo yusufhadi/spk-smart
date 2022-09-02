@@ -43,13 +43,13 @@ class SubCriteriaController extends Controller
         $this->validate($request, [
             'id_kriteria' => 'required',
             'sub_kriteria' => 'required',
-            'bobot' => 'required'
+            'bobot_sub' => 'required'
         ]);
 
         $subCriteria = SubCriteria::create([
             'id_kriteria' => $request->id_kriteria,
             'sub_kriteria' => $request->sub_kriteria,
-            'bobot' => $request->bobot
+            'bobot_sub' => $request->bobot_sub
         ]);
 
         // dd($subCriteria);
@@ -92,7 +92,7 @@ class SubCriteriaController extends Controller
         $request->validate([
             'id_kriteria' => 'required',
             'sub_kriteria' => 'required',
-            'bobot' => 'required'
+            'bobot_sub' => 'required'
         ]);
 
         $subCriteria = SubCriteria::findOrFail($id);
@@ -100,7 +100,7 @@ class SubCriteriaController extends Controller
         $subCriteria->update([
             'id_kriteria' => $request->id_kriteria,
             'sub_kriteria' => $request->sub_kriteria,
-            'bobot' => $request->bobot
+            'bobot_sub' => $request->bobot_sub
         ]);
 
         return redirect('sub-criteria');

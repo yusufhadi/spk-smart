@@ -43,8 +43,7 @@
     </div>
 
     <!-- Modal Tambah Kriteria -->
-    <div class="modal fade" id="addPenilaian-{{ $item->id }}" tabindex="-1" aria-labelledby="addPenilaianModal"
-        aria-hidden="true">
+    <div class="modal fade" id="addPenilaian-" tabindex="-1" aria-labelledby="addPenilaianModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
