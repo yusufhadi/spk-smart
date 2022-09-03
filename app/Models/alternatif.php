@@ -10,4 +10,9 @@ class alternatif extends Model
     use HasFactory;
 
     protected $fillable = ['alternatif'];
+
+    public function detail_alternatif()
+    {
+        return $this->hasOne('App\Models\detail_alternatif', 'id_alternatif');
+    }
 }
