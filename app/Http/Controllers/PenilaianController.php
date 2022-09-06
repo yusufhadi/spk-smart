@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\alternatif;
+use App\Models\Criteria;
+use App\Models\detail_alternatif;
+use App\Models\SubCriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,17 +16,24 @@ class PenilaianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $alternatif = alternatif::all();
+        $criteria = Criteria::all();
+        $subCriteria = SubCriteria::all();
 
-        $data = DB::table('criterias')
+        if ($request->get('bobot_sub')) {
+            $subCriteria = SubCriteria::with(['alternatif' => function ($query) use ($request) {
+                return $query->where('bobot', $request->bobot_sub);
+            }]);
+        }
+
+        $detail = DB::table('criterias')
             ->join('sub_criterias', 'sub_criterias.id_kriteria', '=', 'criterias.id')
             ->get();
 
-        // dd($data);
-
-        return view('dashboard.Penilaian.index', compact('alternatif'));
+        // dd($detail);
+        return view('dashboard.Penilaian.index', compact('alternatif', 'detail', 'criteria', 'subCriteria'));
     }
 
     /**
@@ -44,7 +54,27 @@ class PenilaianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $detail = DB::table('criterias')
+            ->join('sub_criterias', 'sub_criterias.id_kriteria', '=', 'criterias.id')
+            ->get();
+
+        $this->validate($request, [
+            'id_alternatif' => 'required',
+            'alternatif' => 'required',
+            'kriteria' => 'required',
+            'sub_kriteria' => 'required',
+            'bobot_sub' => 'required'
+        ]);
+
+        $detail = detail_alternatif::create([
+            'id_alternatif' => $request->id_alternatif,
+            'alternatif' => $request->alternatif,
+            'kriteria' => $request->kriteria,
+            'sub_kriteria' => $request->sub_kriteria,
+            'bobot_sub' => $request->bobot_sub
+        ]);
+
+        return redirect('/penilaian');
     }
 
     /**

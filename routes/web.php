@@ -36,3 +36,4 @@ Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('u
 Route::get('/alternatif/delete/{id}', [AlternatifController::class, 'destroy'])->name('delete-alternatif');
 
 Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian');
+Route::post('penilaian', [PenilaianController::class, 'store'])->name('tambah-penilaian');

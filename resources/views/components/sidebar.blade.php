@@ -1,11 +1,12 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+        <div class="sidebar-brand-icon">
+            {{-- <i class="fas fa-laugh-wink"></i> --}}
+            <img src="{{ url('img/tvri.png') }}" height="90px" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Televisi Republik Indonesia</div>
+        {{-- <div class="sidebar-brand-text mx-3">Televisi Republik Indonesia</div> --}}
     </a>
 
     <!-- Divider -->
