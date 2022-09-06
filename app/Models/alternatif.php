@@ -9,7 +9,11 @@ class alternatif extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['alternatif'];
+    protected $fillable = [
+        'alternatif',
+        'reporter',
+        'tgl'
+    ];
 
     public function detail_alternatif()
     {

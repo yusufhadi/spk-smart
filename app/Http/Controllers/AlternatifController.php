@@ -37,11 +37,15 @@ class AlternatifController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'alternatif' => 'required'
+            'alternatif' => 'required',
+            'reporter' => 'required',
+            'tgl' => 'required'
         ]);
 
         $alternatif = alternatif::create([
-            'alternatif' => $request->alternatif
+            'alternatif' => $request->alternatif,
+            'reporter' => $request->reporter,
+            'tgl' => $request->tgl
         ]);
 
         return redirect('alternatif');
@@ -79,13 +83,17 @@ class AlternatifController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'alternatif' => 'required'
+            'alternatif' => 'required',
+            'reporter' => 'required',
+            'tgl' => 'required'
         ]);
 
         $alternatif = alternatif::findOrFail($id);
 
         $alternatif->update([
-            'alternatif' => $request->alternatif
+            'alternatif' => $request->alternatif,
+            'reporter' => $request->reporter,
+            'tgl' => $request->tgl
         ]);
 
         return redirect('alternatif');

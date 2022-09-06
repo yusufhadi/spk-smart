@@ -20,6 +20,8 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Alternatif</th>
+                            <th>Nama Reporter</th>
+                            <th>Tanggal Berita</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,6 +30,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->alternatif }}</td>
+                                <td>{{ $item->reporter }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl)) }}</td>
                                 <td>
                                     <a href="" class="btn btn-warning btn-sm mr-1" data-bs-toggle="modal"
                                         data-bs-target="#updateAlternatif-{{ $item->id }}"> <i class="fas fa-pen"></i>
@@ -64,6 +68,14 @@
                             <label for="alternatif" class="form-label">Alternatif</label>
                             <input type="text" class="form-control" name="alternatif">
                         </div>
+                        <div class="mb-3">
+                            <label for="reporter" class="form-label">Nama Reporter</label>
+                            <input type="text" class="form-control" name="reporter">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tgl" class="form-label">Tanggal Berita</label>
+                            <input type="date" class="form-control" name="tgl">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -93,6 +105,14 @@
                                 <label for="alternatif" class="form-label">Alternatif</label>
                                 <input type="text" value="{{ $item->alternatif }}" class="form-control"
                                     name="alternatif">
+                            </div>
+                            <div class="mb-3">
+                                <label for="reporter" class="form-label">Nama Reporter</label>
+                                <input type="text" value="{{ $item->reporter }}" class="form-control" name="reporter">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tgl" class="form-label">Tanggal Berita</label>
+                                <input type="date" value="{{ $item->tgl }}" class="form-control" name="tgl">
                             </div>
                         </div>
                         <div class="modal-footer">
