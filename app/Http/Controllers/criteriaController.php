@@ -50,7 +50,7 @@ class criteriaController extends Controller
             'bobot_criteria' => $request->bobot_criteria,
         ]);
 
-        return redirect('criteria');
+        return redirect('criteria')->with('toast_success', 'Kriteria Berhasil Ditambahkan');
     }
 
 
@@ -101,7 +101,7 @@ class criteriaController extends Controller
             'bobot_criteria' => $request->bobot_criteria,
         ]);
 
-        return redirect('criteria');
+        return redirect('criteria')->with('toast_success', 'Kriteria Berhasil Di Update');
         // return view('dashboard.Criteria.index', compact('criteria'));
     }
 
@@ -117,6 +117,6 @@ class criteriaController extends Controller
 
         $data = $criteria->delete();
 
-        return redirect('criteria');
+        return redirect('criteria')->with('toast_success', 'Kriteria Berhasil Dihapus');
     }
 }

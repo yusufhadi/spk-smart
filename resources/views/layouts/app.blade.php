@@ -60,7 +60,7 @@
             <!-- Footer -->
             @include('components.footer')
             <!-- End of Footer -->
-
+            @include('sweetalert::alert')
         </div>
         <!-- End of Content Wrapper -->
 

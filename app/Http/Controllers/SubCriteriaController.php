@@ -54,7 +54,7 @@ class SubCriteriaController extends Controller
 
         // dd($subCriteria);
 
-        return redirect('sub-criteria');
+        return redirect('sub-criteria')->with('toast_success', 'Sub Kriteria Berhasil Ditambahkan');
         // return view('dashboard.SubCriteria.index', compact('subCriteria'));
     }
 
@@ -103,7 +103,7 @@ class SubCriteriaController extends Controller
             'bobot_sub' => $request->bobot_sub
         ]);
 
-        return redirect('sub-criteria');
+        return redirect('sub-criteria')->with('toast_success', 'Sub Kriteria Berhasil Di Update');
     }
 
     /**
@@ -118,6 +118,6 @@ class SubCriteriaController extends Controller
 
         $data = $subCriteria->delete();
 
-        return redirect('sub-criteria');
+        return redirect('sub-criteria')->with('toast_success', 'Sub Kriteria Berhasil Dihapus');
     }
 }

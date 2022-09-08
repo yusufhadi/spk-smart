@@ -48,7 +48,7 @@ class AlternatifController extends Controller
             'tgl' => $request->tgl
         ]);
 
-        return redirect('alternatif');
+        return redirect('alternatif')->with('toast_success', 'Alternatif Berhasil Ditambahkan');
     }
 
     /**
@@ -96,7 +96,7 @@ class AlternatifController extends Controller
             'tgl' => $request->tgl
         ]);
 
-        return redirect('alternatif');
+        return redirect('alternatif')->with('toast_success', 'Alternatif Berhasil Di Update');
     }
 
     /**
@@ -111,6 +111,6 @@ class AlternatifController extends Controller
 
         $data = $alternatif->delete();
 
-        return redirect('alternatif');
+        return redirect('alternatif')->with('toast_success', 'Alternatif Berhasil Dihapus');
     }
 }

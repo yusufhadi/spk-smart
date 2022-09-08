@@ -74,7 +74,7 @@ class PenilaianController extends Controller
             'bobot_sub' => $request->bobot_sub
         ]);
 
-        return redirect('/penilaian');
+        return redirect('/penilaian')->with('toast_success', 'Penilaian Berhasil Ditambahkan');
     }
 
     /**
