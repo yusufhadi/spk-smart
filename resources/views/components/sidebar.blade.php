@@ -48,6 +48,11 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Data Penilaian</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('perhitungan') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data Perhitungan</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

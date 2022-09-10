@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\criteriaController;
+use App\Http\Controllers\HitungController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\SubCriteriaController;
@@ -37,3 +38,5 @@ Route::get('/alternatif/delete/{id}', [AlternatifController::class, 'destroy'])-
 
 Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian');
 Route::post('penilaian', [PenilaianController::class, 'store'])->name('tambah-penilaian');
+
+Route::get('/perhitungan', [HitungController::class, 'hitung'])->name('perhitungan');
