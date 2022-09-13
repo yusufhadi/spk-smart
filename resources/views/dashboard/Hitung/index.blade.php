@@ -62,21 +62,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($criteria as $c)
+                        @for ($i = 0; $i < sizeof($criteria); $i++)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $c->kode_kriteria }}</td>
-                                <td>{{ $c->kriteria }}</td>
-                                <td>{{ $c->jenis }}</td>
-                                <td>{{ $c->bobot_criteria }}</td>
-                                <td></td>
+                                <td>{{ $i + 1 }}</td>
+                                <td>{{ $criteria[$i]->kode_kriteria }}</td>
+                                <td>{{ $criteria[$i]->kriteria }}</td>
+                                <td>{{ $criteria[$i]->jenis }}</td>
+                                <td>{{ $criteria[$i]->bobot_criteria }}</td>
+                                <td>{{ number_format($normalisasi[$i], 2, '.', ',') }}</td>
                             </tr>
-                        @endforeach
+                        @endfor
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="5" class="text-center"><b>Total Normalisasi</b></td>
-                            <td></td>
+                            <td>{{ number_format($total_normalisasi, 2, '.', ',') }}</td>
                         </tr>
                     </tfoot>
                 </table>

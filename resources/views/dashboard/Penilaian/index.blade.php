@@ -64,20 +64,6 @@
                                 <input type="text" class="form-control" name="alternatif" value="{{ $item->alternatif }}"
                                     readonly>
                             </div>
-                            {{-- <div class="mb-3">
-                                @foreach ($detail as $d)
-                                    @if ($d->id == $d->id_kriteria)
-                                        <label for="alternatif" class="form-label">{{ $d->kriteria }}</label>
-                                        <select name="id_kriteria" class="form-select" aria-label="Default select example">
-                                            @foreach ($detail as $item)
-                                                @if ($d->id == $item->id_kriteria)
-                                                    <option value="{{ $item->id }}">{{ $item->sub_kriteria }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                @endforeach
-                            </div> --}}
                             @foreach ($criteria as $c)
                                 <div class="mb-3">
                                     <label for="alternatif" class="form-label">{{ $c->kriteria }}</label>
@@ -88,10 +74,6 @@
                                                 <option value="{{ $sc->sub_kriteria }}">{{ $sc->sub_kriteria }}</option>
                                             @endif
                                         @endforeach
-                                        @if (Request::get('bobot_sub'))
-                                            <input type="text" class="form-control" name="id_alternatif"
-                                                value="{{ $sc->bobot_sub }}">
-                                        @endif
                                     </select>
                                 </div>
                             @endforeach

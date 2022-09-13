@@ -11,18 +11,19 @@ class HitungController extends Controller
     public function hitung()
     {
         //table data kriteria
-        $criteria = Criteria::all();
+        $criteria = DB::table('criterias')->get();
         $total_bobot = DB::table('criterias')->sum('bobot_criteria');
 
-        //table normalisasi data kriteria
-        $n = Criteria::select('bobot_criteria')->get();
+        // table normalisasi data kriteria
+        $n = DB::table('criterias')->select('bobot_criteria')->get();
         $normalisasi = array();
-        for ($i = 1; $i <= sizeof($n); $i++) {
-            $i = $total_bobot * $n;
-            $normalisasi = $i;
+        for ($i = 0; $i < sizeof($n); $i++) {
+            $m = $n[$i]->bobot_criteria / $total_bobot;
+            array_push($normalisasi, $m);
         }
-        dd($normalisasi[]);
 
-        return view('dashboard.Hitung.index', compact('criteria', 'total_bobot'));
+        $total_normalisasi = array_sum($normalisasi);
+
+        return view('dashboard.Hitung.index', compact('criteria', 'total_bobot', 'normalisasi', 'total_normalisasi'));
     }
 }
