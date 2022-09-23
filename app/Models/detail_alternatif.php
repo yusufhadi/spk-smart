@@ -11,14 +11,22 @@ class detail_alternatif extends Model
 
     protected $fillable = [
         'id_alternatif',
-        'alternatif',
-        'kriteria',
-        'sub_kriteria',
-        'bobot_sub'
+        // 'id_kriteria',
+        'id_sub',
     ];
 
     public function alternatif()
     {
         return $this->belongsTo('App\Models\alternatif', 'id_alternatif');
+    }
+
+    // public function kriteria()
+    // {
+    //     return $this->belongsTo('App\Models\Criteria', 'id_kriteria');
+    // }
+
+    public function sub()
+    {
+        return $this->belongsTo('App\Models\SubCriteria', 'id_sub');
     }
 }

@@ -20,4 +20,9 @@ class Criteria extends Model
     {
         return $this->hasOne('App\Models\subCriteria', 'id_kriteria');
     }
+
+    // public function detail()
+    // {
+    //     return $this->hasOne('App\Models\detail_alternatif', 'id_kriteria');
+    // }
 }

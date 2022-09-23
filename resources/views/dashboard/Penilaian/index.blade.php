@@ -60,18 +60,18 @@
                                 <input type="text" class="form-control" name="id_alternatif" value="{{ $item->id }}">
                             </div>
                             <div class="mb-3">
-                                <label for="alternatif" class="form-label">Alternatif</label>
-                                <input type="text" class="form-control" name="alternatif" value="{{ $item->alternatif }}"
+                                <label for="" class="form-label">Alternatif</label>
+                                <input type="text" class="form-control" name="" value="{{ $item->alternatif }}"
                                     readonly>
                             </div>
                             @foreach ($criteria as $c)
                                 <div class="mb-3">
-                                    <label for="alternatif" class="form-label">{{ $c->kriteria }}</label>
-                                    <select name="id_kriteria" class="form-select" aria-label="Default select example">
+                                    <label for="id_sub" class="form-label">{{ $c->kriteria }}</label>
+                                    <select name="id_sub" class="form-select" aria-label="Default select example">
                                         <option selected>Silahkan Pilih Sub Criteria {{ $c->kriteria }}</option>
                                         @foreach ($subCriteria as $sc)
                                             @if ($c->id == $sc->id_kriteria)
-                                                <option value="{{ $sc->sub_kriteria }}">{{ $sc->sub_kriteria }}</option>
+                                                <option value="{{ $sc->id }}">{{ $sc->sub_kriteria }}</option>
                                             @endif
                                         @endforeach
                                     </select>

@@ -19,4 +19,9 @@ class SubCriteria extends Model
     {
         return $this->belongsTo('App\Models\Criteria', 'id_kriteria');
     }
+
+    public function detail()
+    {
+        return $this->hasOne('App\Models\detail_alternatif', 'id_sub');
+    }
 }

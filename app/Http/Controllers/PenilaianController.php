@@ -54,25 +54,20 @@ class PenilaianController extends Controller
      */
     public function store(Request $request)
     {
-        $detail = DB::table('criterias')
-            ->join('sub_criterias', 'sub_criterias.id_kriteria', '=', 'criterias.id')
-            ->get();
-
+        dd($request);
         $this->validate($request, [
             'id_alternatif' => 'required',
-            'alternatif' => 'required',
-            'kriteria' => 'required',
-            'sub_kriteria' => 'required',
-            'bobot_sub' => 'required'
+            'id_sub' => 'required',
         ]);
+
+
 
         $detail = detail_alternatif::create([
             'id_alternatif' => $request->id_alternatif,
-            'alternatif' => $request->alternatif,
-            'kriteria' => $request->kriteria,
-            'sub_kriteria' => $request->sub_kriteria,
-            'bobot_sub' => $request->bobot_sub
+            'id_sub' => $request->id_sub
         ]);
+
+        dd($detail);
 
         return redirect('/penilaian')->with('toast_success', 'Penilaian Berhasil Ditambahkan');
     }

@@ -17,10 +17,10 @@ class CreateDetailAlternatifsTable extends Migration
             $table->id();
             $table->bigInteger('id_alternatif')->unsigned();
             $table->foreign('id_alternatif')->references('id')->on('alternatifs');
-            $table->string('alternatif');
-            $table->string('kriteria');
-            $table->string('sub_kriteria');
-            $table->string('bobot_sub');
+            // $table->bigInteger('id_kriteria')->unsigned();
+            // $table->foreign('id_kriteria')->references('id')->on('criterias');
+            $table->bigInteger('id_sub')->unsigned();
+            $table->foreign('id_sub')->references('id')->on('sub_criterias');
             $table->timestamps();
         });
     }
