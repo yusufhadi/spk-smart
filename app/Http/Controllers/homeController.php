@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\alternatif;
+use App\Models\Criteria;
+use App\Models\SubCriteria;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class homeController extends Controller
@@ -13,7 +17,12 @@ class homeController extends Controller
      */
     public function index()
     {
-        return view("dashboard.home");
+        return view("dashboard.home", [
+            'kriteria' => Criteria::count(),
+            'subCriteria' => SubCriteria::count(),
+            'alternatif' => alternatif::count(),
+            'user' => User::count()
+        ]);
     }
 
     /**

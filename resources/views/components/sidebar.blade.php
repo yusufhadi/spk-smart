@@ -27,27 +27,30 @@
         Master Data
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('criteria') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Kriteria</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('subcriteria') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Sub Kriteria</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('alternatif') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Alternatif</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('penilaian') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Penilaian</span></a>
-    </li>
+    @if (Auth::user()->level == 'admin')
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('criteria') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Data Kriteria</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('subcriteria') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Data Sub Kriteria</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('alternatif') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Data Alternatif</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('penilaian') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Data Penilaian</span></a>
+        </li>
+    @endif
+
     <li class="nav-item">
         <a class="nav-link" href="{{ route('perhitungan') }}">
             <i class="fas fa-fw fa-chart-area"></i>
@@ -56,6 +59,17 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Master User
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('user') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data User</span></a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
