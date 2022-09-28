@@ -67,7 +67,7 @@
                             @foreach ($criteria as $c)
                                 <div class="mb-3">
                                     <label for="id_sub" class="form-label">{{ $c->kriteria }}</label>
-                                    <select name="id_sub" class="form-select" aria-label="Default select example">
+                                    <select name="id_sub[]" class="form-select" aria-label="Default select example">
                                         <option selected>Silahkan Pilih Sub Criteria {{ $c->kriteria }}</option>
                                         @foreach ($subCriteria as $sc)
                                             @if ($c->id == $sc->id_kriteria)

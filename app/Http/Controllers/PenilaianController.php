@@ -22,12 +22,6 @@ class PenilaianController extends Controller
         $criteria = Criteria::all();
         $subCriteria = SubCriteria::all();
 
-        if ($request->get('bobot_sub')) {
-            $subCriteria = SubCriteria::with(['alternatif' => function ($query) use ($request) {
-                return $query->where('bobot', $request->bobot_sub);
-            }]);
-        }
-
         $detail = DB::table('criterias')
             ->join('sub_criterias', 'sub_criterias.id_kriteria', '=', 'criterias.id')
             ->get();
@@ -54,20 +48,19 @@ class PenilaianController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $this->validate($request, [
             'id_alternatif' => 'required',
             'id_sub' => 'required',
         ]);
 
-
-
-        $detail = detail_alternatif::create([
-            'id_alternatif' => $request->id_alternatif,
-            'id_sub' => $request->id_sub
-        ]);
-
-        dd($detail);
+        $id_subs = $request->id_sub;
+        foreach ($id_subs as $id_sub) {
+            detail_alternatif::create([
+                'id_alternatif' => $request->id_alternatif,
+                'id_sub' => $id_sub
+            ]);
+        }
 
         return redirect('/penilaian')->with('toast_success', 'Penilaian Berhasil Ditambahkan');
     }
