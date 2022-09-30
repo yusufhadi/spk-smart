@@ -24,6 +24,21 @@ class HitungController extends Controller
 
         $total_normalisasi = array_sum($normalisasi);
 
-        return view('dashboard.Hitung.index', compact('criteria', 'total_bobot', 'normalisasi', 'total_normalisasi'));
+        //Memberi Nilai Alternatif pada Masing-Masing Kriteria
+        $bobot_alternatif1 = DB::table('detail_alternatifs')
+            ->join('alternatifs', 'alternatifs.id', '=', 'detail_alternatifs.id_alternatif')
+            ->join('sub_criterias', 'sub_criterias.id', '=', 'detail_alternatifs.id_sub')
+            ->select('id_alternatif', 'id_sub', 'alternatif', 'sub_kriteria')
+            ->get();
+
+        // $bobot_alternatif2 = DB::table('detail_alternatifs')
+        //     ->join('alternatifs', 'alternatifs.id', '=', 'detail_alternatifs.id_alternatif')
+        //     ->join('sub_criterias', 'sub_criterias.id', '=', 'detail_alternatifs.id_sub')
+        //     ->select('id_alternatif', 'id_sub', 'alternatif', 'sub_kriteria')
+        //     ->get();
+
+        dd($bobot_alternatif1);
+
+        return view('dashboard.Hitung.index', compact('criteria', 'total_bobot', 'normalisasi', 'total_normalisasi', 'bobot_alternatif1'));
     }
 }
