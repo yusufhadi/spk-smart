@@ -4,13 +4,14 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
         <div class="sidebar-brand-icon">
             {{-- <i class="fas fa-laugh-wink"></i> --}}
-            <img src="{{ url('img/tvri.png') }}" height="90px" alt="">
+            <img src="{{ url('img/tvri2.png') }}" class="mt-5" height="100px" alt="">
+
         </div>
         {{-- <div class="sidebar-brand-text mx-3">Televisi Republik Indonesia</div> --}}
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider my-0 mt-5">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">

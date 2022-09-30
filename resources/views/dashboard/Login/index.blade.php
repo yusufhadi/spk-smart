@@ -40,7 +40,8 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <img src="{{ asset('img/tvri.png') }}" alt="">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Lembaga Penyiaran Publik Televisi Republik
+                                            Indonesia Sulawesi Selatan</h1>
                                     </div>
                                     <form class="user" action="{{ route('login') }}" method="POST">
                                         @csrf
