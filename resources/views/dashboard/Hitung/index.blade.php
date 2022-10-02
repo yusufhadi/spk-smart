@@ -105,9 +105,75 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item1->alternatif }}</td>
-                                <td>{{ $item1->sub_kriteria }}</td>
+                                @foreach ($item1->subCriteria as $data)
+                                    <td>{{ $data->sub_kriteria }}</td>
+                                @endforeach
                             </tr>
                         @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Memberikan Nilai Subkriteria pada masing-masing alternatif</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Alternatif</th>
+                            @foreach ($criteria as $item)
+                                <th scope="row">{{ $item->kode_kriteria }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($bobot_alternatif1 as $item1)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item1->alternatif }}</td>
+                                @foreach ($item1->subCriteria as $data)
+                                    <td>{{ $data->bobot_sub }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Menentukan Nilai Utility</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Alternatif</th>
+                            @foreach ($criteria as $item)
+                                <th scope="row">{{ $item->kode_kriteria }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- @foreach ($bobot_alternatif1 as $item1)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item1->alternatif }}</td>
+                                @foreach ($item1->subCriteria as $data)
+                                    <td>{{ $data->bobot_sub }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>

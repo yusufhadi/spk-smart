@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class alternatif extends Model
 {
@@ -14,9 +15,18 @@ class alternatif extends Model
         'reporter',
         'tgl'
     ];
-
-    public function detail_alternatif()
+    public function sub()
     {
-        return $this->hasOne('App\Models\detail_alternatif', 'id_alternatif');
+        return $this->belongsToMany('App\Models\SubCriteria');
+    }
+
+    /**
+     * The subCriteria that belong to the alternatif
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function subCriteria(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\SubCriteria', 'detail_alternatifs', 'id_alternatif', 'id_sub');
     }
 }
