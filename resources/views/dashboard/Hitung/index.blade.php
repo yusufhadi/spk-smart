@@ -165,15 +165,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($bobot_alternatif1 as $item1)
+                        @for ($a = 0; $a < sizeof($arr_da); $a++)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item1->alternatif }}</td>
-                                @foreach ($item1->subCriteria as $data)
-                                    <td>{{ $data->bobot_sub }}</td>
+                                <td>{{ $a + 1 }}</td>
+                                <td>{{ $arr_da[$a]->alternatif }}</td>
+
+                                @foreach ($utility[$a] as $item)
+                                    <td>{{ $item }}</td>
                                 @endforeach
                             </tr>
-                        @endforeach --}}
+                        @endfor
                     </tbody>
                 </table>
             </div>

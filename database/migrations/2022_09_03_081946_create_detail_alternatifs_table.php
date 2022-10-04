@@ -16,7 +16,7 @@ class CreateDetailAlternatifsTable extends Migration
         Schema::create('detail_alternatifs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_alternatif')->unsigned();
-            $table->foreign('id_alternatif')->references('id')->on('alternatifs');
+            $table->foreign('id_alternatif')->references('id')->on('alternatifs')->onDelete('cascade');
             // $table->bigInteger('id_kriteria')->unsigned();
             // $table->foreign('id_kriteria')->references('id')->on('criterias');
             $table->bigInteger('id_sub')->unsigned();

@@ -13,6 +13,7 @@ class HitungController extends Controller
     {
         //table data kriteria
         $criteria = DB::table('criterias')->get();
+        $alternatif = alternatif::all();
         $total_bobot = DB::table('criterias')->sum('bobot_criteria');
 
         // table normalisasi data kriteria
@@ -23,26 +24,111 @@ class HitungController extends Controller
             array_push($normalisasi, $m);
         }
 
+        //total normalisasi data kriteria
         $total_normalisasi = array_sum($normalisasi);
 
-        //Memberi Nilai Alternatif pada Masing-Masing Kriteria
-        // $bobot_alternatif1 = DB::table('detail_alternatifs')
-        //     ->join('alternatifs', 'alternatifs.id', '=', 'detail_alternatifs.id_alternatif')
-        //     ->join('sub_criterias', 'sub_criterias.id', '=', 'detail_alternatifs.id_sub')
-        //     ->select('id_alternatif', 'id_sub', 'alternatif', 'sub_kriteria')
-        //     ->get();
-
-
-
-        // $bobot_alternatif2 = DB::table('detail_alternatifs')
-        //     ->join('alternatifs', 'alternatifs.id', '=', 'detail_alternatifs.id_alternatif')
-        //     ->join('sub_criterias', 'sub_criterias.id', '=', 'detail_alternatifs.id_sub')
-        //     ->select('id_alternatif', 'id_sub', 'alternatif', 'sub_kriteria')
-        //     ->get();
-
-
+        //tabel penilaian alternatif
         $bobot_alternatif1 = alternatif::with(['subCriteria'])->get();
 
-        return view('dashboard.Hitung.index', compact('criteria', 'total_bobot', 'normalisasi', 'total_normalisasi', 'bobot_alternatif1'));
+        //tabel nilai utility
+        $countCriteria = Criteria::all()->count();
+
+        // get min number
+        $minNumberAll = [];
+        for ($i = 0; $i < $countCriteria; $i++) {
+            $minNumber = 0;
+            foreach ($bobot_alternatif1 as $item) {
+                if ($minNumber != 0) {
+                    if ($item->subCriteria[$i]->bobot_sub <= $minNumber) {
+                        $minNumber = $item->subCriteria[$i]->bobot_sub;
+                    } else {
+                        $minNumber = $minNumber;
+                    }
+                } else {
+                    $minNumber = $item->subCriteria[$i]->bobot_sub;
+                }
+            }
+            array_push($minNumberAll, $minNumber);
+        }
+
+        // get max number
+        $maxNumberAll = [];
+        for ($i = 0; $i < $countCriteria; $i++) {
+            $maxNumber = 0;
+            foreach ($bobot_alternatif1 as $item) {
+                if ($maxNumber != 0) {
+                    if ($item->subCriteria[$i]->bobot_sub >= $maxNumber) {
+                        $maxNumber = $item->subCriteria[$i]->bobot_sub;
+                    } else {
+                        $maxNumber = $maxNumber;
+                    }
+                } else {
+                    $maxNumber = $item->subCriteria[$i]->bobot_sub;
+                }
+            }
+            array_push($maxNumberAll, $maxNumber);
+        }
+
+        //per yang di atas
+        $minResult = [];
+        for ($i = 0; $i < sizeof($alternatif); $i++) {
+            foreach ($minNumberAll as $key => $min) {
+                array_push($minResult, ($bobot_alternatif1[$i]->subCriteria[$key]->bobot_sub - $min));
+            }
+        }
+
+        //per yang dibawah
+        $bawah = [];
+        for ($i = 0; $i < sizeof($alternatif); $i++) {
+            foreach ($minNumberAll as $key => $min) {
+                array_push($bawah, ($maxNumberAll[$key] - $minNumberAll[$key]));
+            }
+        }
+
+        //membagi antar hasil per atas dan per bawah
+        $finalResult = [];
+        $iter = 0;
+        $iter = 0;
+        foreach ($minResult as $min) {
+            if ($minResult[$iter] != 0) {
+                array_push($finalResult, ($minResult[$iter] / $bawah[0]));
+            } else {
+                array_push($finalResult, 0);
+            }
+            $iter++;
+        }
+
+        //pecahkan array nilai utility jadi array dua dimensi berdasarkan jumblah kriteria
+        $utility = [];
+        $count = 0;
+        for ($i = 0; $i < sizeof($alternatif); $i++) {
+            for ($j = 0; $j < sizeof($criteria); $j++) {
+                $utility[$i][$j] = $finalResult[$count];
+                $count++;
+            }
+        }
+
+        // mengambil data alternati dan dijadikan sebuah array
+        $da = DB::table('alternatifs')->select('alternatif')->get();
+        $arr_da = [];
+        $arr = 0;
+        for ($i = 0; $i < sizeof($da); $i++) {
+            $arr_da[$i] = $da[$arr];
+            $arr++;
+        }
+
+        return view(
+            'dashboard.Hitung.index',
+            compact(
+                'criteria',
+                'total_bobot',
+                'normalisasi',
+                'total_normalisasi',
+                'bobot_alternatif1',
+                'finalResult',
+                'utility',
+                'arr_da'
+            )
+        );
     }
 }
