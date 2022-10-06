@@ -117,6 +117,21 @@ class HitungController extends Controller
             $arr++;
         }
 
+        $n = DB::table('criterias')->select('bobot_criteria')->get();
+        $normalisasi = array();
+        for ($i = 0; $i < sizeof($n); $i++) {
+            $m = $n[$i]->bobot_criteria / $total_bobot;
+            array_push($normalisasi, $m);
+        }
+
+        //operasi perhitungan table hasil
+        $hasil = [];
+        for ($i = 0; $i < sizeof($arr_da); $i++) {
+            for ($j = 0; $j < sizeof($criteria); $j++) {
+                $hasil[$i][$j] = $utility[$i][$j] * $normalisasi[$j];
+            }
+        }
+
         return view(
             'dashboard.Hitung.index',
             compact(
@@ -127,7 +142,8 @@ class HitungController extends Controller
                 'bobot_alternatif1',
                 'finalResult',
                 'utility',
-                'arr_da'
+                'arr_da',
+                'hasil'
             )
         );
     }
