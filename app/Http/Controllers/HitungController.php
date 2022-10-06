@@ -132,6 +132,51 @@ class HitungController extends Controller
             }
         }
 
+        //table total hasil dari tabel hasil
+        $hasil_akhir = [];
+        for ($j = 0; $j < sizeof($utility); $j++) {
+            $hasil_akhir[$j] = array_sum($hasil[$j]);
+        }
+
+        // $rangking = [];
+        // for ($i = 0; $i < sizeof($arr_da); $i++) {
+        //     for ($j = 0; $j < sizeof($hasil_akhir); $j++) {
+        //         if ($j == 0) {
+        //             $rangking[$i][$j] = $arr_da[$i];
+        //         } else {
+        //             $rangking[$i][$j] = $hasil_akhir[$i][$j - 1];
+        //         }
+        //     }
+        // }
+
+        // $a = ['mangga','jambu','timun'];
+        // $b = [2,5,4];
+
+        // for ($i=0; $i < count($a); $i++) { 
+        //   $c[$i] = $a[$i].','.$b[$i]; // gabungkan masing" isi array dg (,)
+        //   $c[$i] = explode(',',$c[$i]); // explode/jadikan array berdasarkan pemisah (,)
+        // }
+
+        // print_r($c);
+
+        // dd(is_array($hasil_akhir));
+
+
+
+
+        $rangking = [];
+        $data = [];
+        for ($i = 0; $i < count($arr_da); $i++) {
+            $data[] = $arr_da[$i]->alternatif;
+            $data[] = $hasil_akhir[$i];
+            $rangking[] = $data;
+            $data = [];
+        }
+
+
+
+        // dd($rangking);
+
         return view(
             'dashboard.Hitung.index',
             compact(
@@ -143,7 +188,9 @@ class HitungController extends Controller
                 'finalResult',
                 'utility',
                 'arr_da',
-                'hasil'
+                'hasil',
+                'hasil_akhir',
+                'rangking'
             )
         );
     }

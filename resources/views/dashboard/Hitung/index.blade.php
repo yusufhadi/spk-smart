@@ -169,9 +169,8 @@
                             <tr>
                                 <td>{{ $a + 1 }}</td>
                                 <td>{{ $arr_da[$a]->alternatif }}</td>
-
                                 @foreach ($utility[$a] as $item)
-                                    <td>{{ $item }}</td>
+                                    <td>{{ number_format($item, 2, '.', ',') }}</td>
                                 @endforeach
                             </tr>
                         @endfor
@@ -202,12 +201,39 @@
                             <tr>
                                 <td>{{ $a + 1 }}</td>
                                 <td>{{ $arr_da[$a]->alternatif }}</td>
-
                                 @foreach ($hasil[$a] as $item)
-                                    <td>{{ $item }}</td>
+                                    <td>{{ number_format($item, 2, '.', ',') }}</td>
                                 @endforeach
                             </tr>
                         @endfor
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Menentukan Hasil Akhir</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Alternatif</th>
+                            <th>Hasil Akhir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($rangking as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item[0] }}</td>
+                                <td>{{ number_format($item[1], 2, '.', ',') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
