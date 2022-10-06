@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian');
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::post('/logout', [LoginController::class, 'keluar'])->name('keluar');
+    Route::get('/perangkingan', [HitungController::class, 'rangking'])->name('rangking');
 
     Route::middleware(['isAdmin'])->group(function () {
         Route::get('/criteria', [criteriaController::class, 'index'])->name('criteria');
